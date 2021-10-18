@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+<div class="row" style="padding-top:50px">
+    <div class="col-lg-6">
+        <div class="bs-component">
+            <form action="/mediana" method="POST">
+            <fieldset>
+                <legend>Calculadora de mediana</legend>
+                <div class="form-group">
+                <label for="lista" class="form-label mt-4">Ingresa una lista de números</label>
+                <input type="text" class="form-control" name="lista" id="lista" placeholder="">
+            
+                </div>
+            </fieldset>
+                <fieldset>
+                    <button type="submit" name="boton" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{message}}        
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <div class="col-lg-4 offset-lg-1">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action active">Resultado</a>
+            <a class="list-group-item list-group-item-action">Mediana: 
+            {%if mediana%}
+                <span id="resultado">{{mediana}}</span>
+            {%endif%}
+            </a>
+          </div>
+    </div>
+  </div>
+{% endblock %}
